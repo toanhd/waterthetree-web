@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         this.logInForm = new FormGroup({
-            email: new FormControl(null, [
+            email: new FormControl(pnull, [
                 Validators.required,
                 Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')
             ]),
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 data => {
                     console.log(data);
-                    if (data.login === true) {
+                    if (data.response.login === true) {
                         this.router.navigateByUrl('/dashboard');
                     } else {
                         this.router.navigateByUrl('/login');
