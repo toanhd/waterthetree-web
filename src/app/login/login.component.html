@@ -1,0 +1,38 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Login</h4>
+                        <p class="card-category">Login use your issued account</p>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="logInForm" (ngSubmit)="onSubmit()">
+                            <span>error</span>
+                            <div class="row">
+                                <div class="col-12 form-group">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Email" formControlName="email">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 form-group">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Password" type="password"
+                                               formControlName="pwd">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <button mat-raised-button type="submit"
+                                    [disabled]="!logInForm.valid" class="btn btn-danger pull-right">Login
+                            </button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
