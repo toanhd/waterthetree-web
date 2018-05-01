@@ -1,7 +1,6 @@
 import {Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
 import {Location, LocationStrategy, PathLocationStrategy, PopStateEvent} from '@angular/common';
 import 'rxjs/add/operator/filter';
-import {NavbarComponent} from '../../components/navbar/navbar.component';
 import {Router, NavigationEnd, NavigationStart} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 import PerfectScrollbar from 'perfect-scrollbar';
@@ -20,7 +19,7 @@ export class AdminLayoutComponent implements OnInit {
     }
 
     ngOnInit() {
-        const isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
+        const isWindows = navigator.platform.indexOf('Win') > -1;
 
         if (isWindows && !document.getElementsByTagName('body')[0].classList.contains('sidebar-mini')) {
             // if we are on windows OS we activate the perfectScrollbar function
@@ -37,10 +36,10 @@ export class AdminLayoutComponent implements OnInit {
         });
         this.router.events.subscribe((event: any) => {
             if (event instanceof NavigationStart) {
-                if (event.url !== this.lastPoppedUrl)
+                if (event.url != this.lastPoppedUrl)
                     this.yScrollStack.push(window.scrollY);
             } else if (event instanceof NavigationEnd) {
-                if (event.url === this.lastPoppedUrl) {
+                if (event.url == this.lastPoppedUrl) {
                     this.lastPoppedUrl = undefined;
                     window.scrollTo(0, this.yScrollStack.pop());
                 } else
@@ -62,9 +61,9 @@ export class AdminLayoutComponent implements OnInit {
     }
 
     isMaps(path) {
-        let titlee = this.location.prepareExternalUrl(this.location.path());
+        var titlee = this.location.prepareExternalUrl(this.location.path());
         titlee = titlee.slice(1);
-        if (path === titlee) {
+        if (path == titlee) {
             return false;
         }
         else {

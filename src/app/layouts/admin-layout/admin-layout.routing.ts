@@ -10,51 +10,46 @@ import {UpgradeComponent} from '../../upgrade/upgrade.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
-    //   path: '',
-    //   children: [ {
-    //     path: 'dashboard',
-    //     component: DashboardComponent
-    // }]}, {
-    // path: '',
-    // children: [ {
-    //   path: 'userprofile',
-    //   component: UserProfileComponent
-    // }]
-    // }, {
-    //   path: '',
-    //   children: [ {
-    //     path: 'icons',
-    //     component: IconsComponent
+    //     path: '',
+    //     children: [{
+    //         path: 'dashboard',
+    //         component: DashboardComponent
     //     }]
     // }, {
     //     path: '',
-    //     children: [ {
+    //     children: [{
+    //         path: 'userprofile',
+    //         component: UserProfileComponent
+    //     }]
+    // }, {
+    //     path: '',
+    //     children: [{
+    //         path: 'icons',
+    //         component: IconsComponent
+    //     }]
+    // }, {
+    //     path: '',
+    //     children: [{
     //         path: 'notifications',
     //         component: NotificationsComponent
     //     }]
     // }, {
     //     path: '',
-    //     children: [ {
-    //         path: 'maps',
-    //         component: MapsComponent
-    //     }]
-    // }, {
-    //     path: '',
-    //     children: [ {
+    //     children: [{
     //         path: 'typography',
     //         component: TypographyComponent
     //     }]
     // }, {
     //     path: '',
-    //     children: [ {
+    //     children: [{
     //         path: 'upgrade',
     //         component: UpgradeComponent
     //     }]
     // }
-    {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+    {path: '', redirectTo: 'manage-user', pathMatch: 'full'},
     {path: 'dashboard', component: DashboardComponent},
-    {path: 'user-profile', component: UserProfileComponent},
-    {path: 'table-list', component: TableListComponent},
+    {path: 'create-user', component: UserProfileComponent},
+    {path: 'manage-user', component: TableListComponent},
     {path: 'typography', component: TypographyComponent},
     {path: 'icons', component: IconsComponent},
     {path: 'notifications', component: NotificationsComponent},

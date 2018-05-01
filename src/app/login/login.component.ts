@@ -11,6 +11,7 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
     logInForm: FormGroup;
+    responseMess = '';
 
     constructor(private userService: UserService,
                 private router: Router) {
@@ -27,28 +28,31 @@ export class LoginComponent implements OnInit {
     }
 
     onSubmit() {
-        const user = {
-            email: this.logInForm.value.email,
-            password: this.logInForm.value.pwd,
-        };
-        this.userService.logIn(user)
-            .subscribe(
-                data => {
-                    console.log(data);
-                    if (data.response.login === true) {
-                        this.router.navigateByUrl('/app');
-                        localStorage.setItem('token', data.response.token);
-                        localStorage.setItem('userID', data.response.userID);
-                    } else {
-                        this.router.navigateByUrl('/login');
-                    }
-                },
-                err => console.log(err)
-            );
-        this.logInForm.reset();
-    }
+        if (this.logInForm.valid) {
+            const user = {
+                email: this.logInForm.value.email,
+                password: this.logInForm.value.pwd,
+            };
+            this.userService.logIn(user)
+                .subscribe(
+                    data => {
+                        // console.log(data);
+                        if (data.response.login === true) {
+                            if (parseInt(data.response.userType) === 3) {
+                                this.router.navigateByUrl('/admin');
+                                localStorage.setItem('token', data.response.token);
+                                localStorage.setItem('userID', data.response.userID);
+                            } else {
+                                this.responseMess = 'only Admin can access this site'
+                            }
 
-    logOut() {
-        localStorage.clear()
+                        } else {
+                            this.responseMess = 'Invalid credentials'
+                        }
+                    },
+                    err => console.log(err)
+                );
+        }
+        this.logInForm.reset();
     }
 }
