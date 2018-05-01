@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         this.logInForm = new FormGroup({
-            email: new FormControl(pnull, [
+            email: new FormControl(null, [
                 Validators.required,
                 Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')
             ]),
@@ -36,15 +36,19 @@ export class LoginComponent implements OnInit {
                 data => {
                     console.log(data);
                     if (data.response.login === true) {
-                        this.router.navigateByUrl('/dashboard');
+                        this.router.navigateByUrl('/app');
+                        localStorage.setItem('token', data.response.token);
+                        localStorage.setItem('userID', data.response.userID);
                     } else {
                         this.router.navigateByUrl('/login');
                     }
-                    // localStorage.setItem('token', data.token);
-                    // localStorage.setItem('userID', data.userID);
                 },
                 err => console.log(err)
             );
         this.logInForm.reset();
+    }
+
+    logOut() {
+        localStorage.clear()
     }
 }

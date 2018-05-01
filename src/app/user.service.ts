@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Headers, Http, Response} from '@angular/http';
 import 'rxjs/Rx'
 import {Observable} from 'rxjs/Observable';
+import {JwtHelperService} from '@auth0/angular-jwt';
 
 @Injectable()
 export class UserService {
@@ -21,6 +22,17 @@ export class UserService {
                 }
             })
             .catch((error: Response) => Observable.throw(error.json()));
+    }
+
+    // isLoggedIn() {
+    //     return localStorage.getItem('tokent') !== null;
+    // }
+    public isAuthenticated(): boolean {
+        const jwtHelper: JwtHelperService = new JwtHelperService();
+        const token = localStorage.getItem('token');
+        // Check whether the token is expired and return
+        // true or false
+        return !jwtHelper.isTokenExpired(token);
     }
 }
 

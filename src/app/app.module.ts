@@ -18,6 +18,7 @@ import {
     MatTooltipModule,
 } from '@angular/material';
 import {UserService} from './user.service';
+import {AuthGuardService} from './auth-guard.service';
 
 @NgModule({
     imports: [
@@ -39,7 +40,9 @@ import {UserService} from './user.service';
         AdminLayoutComponent,
         LoginComponent
     ],
-    providers: [UserService],
+    providers: [
+        UserService,
+        AuthGuardService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
